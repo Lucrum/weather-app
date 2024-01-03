@@ -1,15 +1,5 @@
-# webpack-template
+# weather app
 
-A simple template with Webpack, ESLint, & Prettier
+This project is from The Odin Project's Java [curriculum](https://www.theodinproject.com/lessons/javascript-weather-app).
 
-# usage
-
-1. Run the configurator for ESLint
-
-`npm init @eslint/config`
-
-2. Configure `eslint-config-prettier`
-
-https://github.com/prettier/eslint-config-prettier#installation
-
-3. Get to work!
+A simple weather forecast site that pulls from WeatherAPI

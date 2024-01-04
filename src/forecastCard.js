@@ -1,16 +1,59 @@
+import rainyIcon from "./images/icons/weather-pouring.svg";
+import snowyIcon from "./images/icons/weather-snowy.svg";
+import snowRainyIcon from "./images/icons/weather-snowy-rainy.svg";
+import sunnyIcon from "./images/icons/weather-sunny.svg";
+
 // temperatures
-function generateTempExtremes(dayData, metric) {
+function generateTemperatures(dayData, metric) {
   const div = document.createElement("div");
+  const avg = document.createElement("p");
   const high = document.createElement("p");
   const low = document.createElement("p");
+  div.className = "temperatures";
+  avg.classList.add("temperature", "average");
+  high.className = "temperature";
+  low.classList = "temperature";
+
   if (metric) {
-    high.textContent = dayData.maxtemp_c;
-    low.textContent = dayData.mintemp_c;
+    avg.textContent = `${dayData.avgtemp_c}°C`;
+    high.textContent = `${dayData.maxtemp_c}°C`;
+    low.textContent = `${dayData.mintemp_c}°C`;
   } else {
-    high.textContent = Math.round(dayData.maxtemp_f);
-    low.textContent = Math.round(dayData.mintemp_f);
+    avg.textContent = `${Math.round(dayData.avgtemp_f)}°F`;
+    high.textContent = `${Math.round(dayData.maxtemp_f)}°F`;
+    low.textContent = `${Math.round(dayData.mintemp_f)}°F`;
   }
-  div.append(high, low);
+  div.append(avg, high, low);
+
+  return div;
+}
+
+function generatePrecipitation(dayData) {
+  const div = document.createElement("div");
+  const percentage = document.createElement("p");
+  const img = document.createElement("img");
+  div.className = "precipitation";
+  img.className = "small-icon";
+
+  // display the likliest precipitation
+  if (dayData.daily_chance_of_snow > dayData.daily_chance_of_rain) {
+    percentage.textContent = `${dayData.daily_chance_of_snow}%`;
+  } else {
+    percentage.textContent = `${dayData.daily_chance_of_rain}%`;
+  }
+
+  // if it will rain, or snow, or both, display icon
+
+  if (dayData.daily_will_it_rain && dayData.daily_will_it_snow) {
+    img.src = snowRainyIcon;
+  } else if (dayData.daily_will_it_rain) {
+    img.src = rainyIcon;
+  } else if (dayData.daily_will_it_snow) {
+    img.src = snowyIcon;
+  } else {
+    img.src = sunnyIcon;
+  }
+  div.append(percentage, img);
 
   return div;
 }
@@ -21,30 +64,19 @@ export function createForecastCard(data, metric) {
   const div = document.createElement("div");
   // date
   const date = document.createElement("h2");
+  div.className = "forecast-card";
   date.textContent = data.date;
 
   // condition
   const condition = document.createElement("h3");
   condition.textContent = dayData.condition.text;
-  // if rainy, how much?
+  // precipitation
+  const precipitation = generatePrecipitation(dayData);
 
   // max temp, min temp
-  const tempsDiv = document.createElement("div");
-  const avg = document.createElement("p");
-  if (metric) {
-    avg.textContent = dayData.avgtemp_c;
-  } else {
-    avg.textContent = Math.round(dayData.avgtemp_f);
-  }
-  const extremes = generateTempExtremes(dayData, metric);
-  tempsDiv.append(avg, extremes);
+  const temperatures = generateTemperatures(dayData, metric);
 
-  // avg temp
-  //
-
-  //
-  div.append(date, condition, tempsDiv);
-  console.log(div);
+  div.append(date, condition, precipitation, temperatures);
   return div;
 }
 

@@ -1,4 +1,6 @@
 import { createForecastCard } from "./forecastCard";
+import "./styles/forecast.css";
+import "./styles/styles.css";
 
 const apikey = "78dba40657e94103bbc183047240301";
 const days = 3; // free tier limitation
@@ -30,6 +32,5 @@ async function generateForecasts(location, metric) {
 }
 
 searchButton.addEventListener("click", () => {
-  console.log(metricSelect.checked);
   generateForecasts(searchBox.value, metricSelect.checked);
 });

@@ -1,14 +1,18 @@
 div#forecast-container {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+  gap: 2rem;
 }
 
 .forecast-card {
   display: flex;
-  width: 30%;
   flex-direction: column;
   background-color: whitesmoke;
   align-items: center;
+  padding: 2rem;
+  border-radius: var(--standard-corner);
+  width: clamp(200px, 20%, 300px);
+  gap: 2rem;
 }
 
 .temperatures {
@@ -16,6 +20,7 @@ div#forecast-container {
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr 1fr;
   column-gap: 2rem;
+  row-gap: 1rem;
 }
 
 .temperature.average {
@@ -25,4 +30,16 @@ div#forecast-container {
 .temperature {
   display: flex;
   justify-content: center;
+}
+
+.condition {
+  text-align: center;
+  height: 80px;
+}
+
+.precipitation {
+  text-align: center;
+}
+
+@media (max-width: 900px) {
 }

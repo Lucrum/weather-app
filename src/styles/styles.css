@@ -1,3 +1,26 @@
+:root {
+  --standard-corner: 0.5rem;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0px;
+  width: 100%;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+p {
+  margin: 0px;
+}
+
 img.small-icon {
   height: 2rem;
   width: 2rem;

@@ -2,6 +2,7 @@ import rainyIcon from "./images/icons/weather-pouring.svg";
 import snowyIcon from "./images/icons/weather-snowy.svg";
 import snowRainyIcon from "./images/icons/weather-snowy-rainy.svg";
 import sunnyIcon from "./images/icons/weather-sunny.svg";
+import { format } from "date-fns";
 
 // temperatures
 function generateTemperatures(dayData, metric) {
@@ -58,14 +59,21 @@ function generatePrecipitation(dayData) {
   return div;
 }
 
+// formats the YYYY-mm-dd date into something prettier
+// e.g. Thursday, Jan 4
+function generateDate(data) {
+  const date = document.createElement("h2");
+  date.textContent = format(new Date(data.date), "EEEE, LLL d");
+  return date;
+}
+
 // celsius is a boolean
 export function createForecastCard(data, metric) {
   const dayData = data.day;
   const div = document.createElement("div");
-  // date
-  const date = document.createElement("h2");
   div.className = "forecast-card";
-  date.textContent = data.date;
+  // date
+  const date = generateDate(data);
 
   // condition
   const condition = document.createElement("h3");

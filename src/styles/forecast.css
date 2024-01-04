@@ -1,7 +1,9 @@
-div#forecast-container {
+#forecast-container {
   display: flex;
   justify-content: center;
-  gap: 2rem;
+  align-items: center;
+  gap: 2em;
+  width: 100%;
 }
 
 .forecast-card {
@@ -9,18 +11,19 @@ div#forecast-container {
   flex-direction: column;
   background-color: whitesmoke;
   align-items: center;
-  padding: 2rem;
+  padding: 2em;
   border-radius: var(--standard-corner);
   width: clamp(200px, 20%, 300px);
-  gap: 2rem;
+  gap: 2em;
+  border: 2px solid gray;
 }
 
 .temperatures {
   display: grid;
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr 1fr;
-  column-gap: 2rem;
-  row-gap: 1rem;
+  column-gap: 2em;
+  row-gap: 1em;
 }
 
 .temperature.average {
@@ -41,5 +44,12 @@ div#forecast-container {
   text-align: center;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 750px) {
+  #forecast-container {
+    flex-direction: column;
+  }
+
+  .forecast-card {
+    width: clamp(200px, 70%, 600px);
+  }
 }

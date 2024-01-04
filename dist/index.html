@@ -7,11 +7,19 @@
     <script defer src="main.js"></script>
   </head>
   <body>
-    <input type="text" name="location" id="location" />
-    <button id="search">Get Forecast</button>
-    <label for="metric">Metric</label>
-    <input type="checkbox" name="metric" id="metric" />
-    <h2 id="location"></h2>
+    <h1>3-Day Forecast</h1>
+    <div class="input-container">
+      <input
+        type="text"
+        name="location"
+        id="location"
+        placeholder="Enter your location"
+      />
+      <button id="search">Get Forecast</button>
+      <label for="metric">Metric</label>
+      <input type="checkbox" name="metric" id="metric" />
+      <h2 id="location"></h2>
+    </div>
     <div id="forecast-container"></div>
   </body>
 </html>

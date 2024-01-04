@@ -1,8 +1,19 @@
 :root {
-  --standard-corner: 0.5rem;
+  --standard-corner: 0.5em;
 }
 
-h1,
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+}
+
+h1 {
+  margin-bottom: 0px;
+}
+
 h2,
 h3 {
   margin: 0px;
@@ -22,6 +33,6 @@ p {
 }
 
 img.small-icon {
-  height: 2rem;
-  width: 2rem;
+  height: 2em;
+  width: 2em;
 }

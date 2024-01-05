@@ -36,3 +36,14 @@ img.small-icon {
   height: 2em;
   width: 2em;
 }
+
+.input-container {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  align-items: center;
+  column-gap: 5px;
+}
+
+.input-container > button#search {
+  grid-column: 1 / 3;
+}

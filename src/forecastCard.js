@@ -29,6 +29,21 @@ function generateTemperatures(dayData, metric) {
   return div;
 }
 
+function getLikeliestPrecipitation(dayData) {
+  // if it will rain, or snow, or both, display icon
+  let res = "sunny";
+
+  if (dayData.daily_will_it_rain && dayData.daily_will_it_snow) {
+    res = "rainysnowy";
+  } else if (dayData.daily_will_it_rain) {
+    res = "rainy";
+  } else if (dayData.daily_will_it_snow) {
+    res = "snowy";
+  }
+
+  return res;
+}
+
 function generatePrecipitation(dayData) {
   const div = document.createElement("div");
   const percentage = document.createElement("p");
@@ -45,15 +60,18 @@ function generatePrecipitation(dayData) {
 
   // if it will rain, or snow, or both, display icon
 
-  if (dayData.daily_will_it_rain && dayData.daily_will_it_snow) {
+  const likeliestPrecipitation = getLikeliestPrecipitation(dayData);
+
+  if (likeliestPrecipitation === "rainysnowy") {
     img.src = snowRainyIcon;
-  } else if (dayData.daily_will_it_rain) {
+  } else if (likeliestPrecipitation === "rainy") {
     img.src = rainyIcon;
-  } else if (dayData.daily_will_it_snow) {
+  } else if (likeliestPrecipitation === "snowy") {
     img.src = snowyIcon;
   } else {
     img.src = sunnyIcon;
   }
+
   div.append(percentage, img);
 
   return div;
@@ -80,6 +98,7 @@ export function createForecastCard(data, metric) {
   const dayData = data.day;
   const div = document.createElement("div");
   div.className = "forecast-card";
+  div.classList.add(getLikeliestPrecipitation(dayData));
   // date
   const date = generateDate(data);
 

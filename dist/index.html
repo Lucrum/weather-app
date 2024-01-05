@@ -5,9 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script defer src="main.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <h1>3-Day Forecast</h1>
+    <h1 id="header">3-Day Forecast</h1>
     <div class="input-container">
       <input
         type="text"
@@ -20,6 +26,7 @@
         <input type="checkbox" name="metric" id="metric" />
       </div>
       <button id="search">Get Forecast</button>
+      <span id="errors"></p>
       <h2 id="location"></h2>
     </div>
     <div id="forecast-container"></div>

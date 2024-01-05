@@ -1,21 +1,39 @@
 #forecast-container {
   display: flex;
+  box-sizing: border-box;
   justify-content: center;
   align-items: center;
   gap: 2em;
   width: 100%;
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
 .forecast-card {
   display: flex;
   flex-direction: column;
-  background-color: whitesmoke;
   align-items: center;
   padding: 2em;
   border-radius: var(--standard-corner);
   width: clamp(200px, 20%, 300px);
   gap: 2em;
   border: 2px solid gray;
+}
+
+.sunny {
+  background-color: #b9e9ff;
+}
+
+.rainy {
+  background-color: lightgray;
+}
+
+.rainysnowy {
+  background-color: whitesmoke;
+}
+
+.snowy {
+  background-color: #fefefa;
 }
 
 .temperatures {

@@ -9,6 +9,7 @@ const searchBox = document.querySelector("input#location");
 const searchButton = document.querySelector("button#search");
 const forecastContainer = document.querySelector("div#forecast-container");
 const metricSelect = document.querySelector("input#metric");
+const errorBox = document.querySelector("span#errors");
 
 async function getData(location) {
   const response = await fetch(
@@ -19,18 +20,26 @@ async function getData(location) {
 }
 
 async function generateForecasts(location, metric) {
-  const data = await getData(location);
-  const forecastCards = [];
-  const forecasts = data.forecast.forecastday;
+  if (location !== "") {
+    errorBox.textContent = "";
+    const data = await getData(location);
+    const forecastCards = [];
+    const forecasts = data.forecast.forecastday;
 
-  forecasts.forEach((forecastDay) => {
-    console.log(forecastDay);
-    forecastCards.push(createForecastCard(forecastDay, metric));
-  });
+    forecasts.forEach((forecastDay) => {
+      forecastCards.push(createForecastCard(forecastDay, metric));
+    });
 
-  forecastContainer.replaceChildren(...forecastCards);
+    forecastContainer.replaceChildren(...forecastCards);
+  } else {
+    errorBox.textContent = "Please enter a valid location!";
+  }
 }
 
 searchButton.addEventListener("click", () => {
+  generateForecasts(searchBox.value, metricSelect.checked);
+});
+
+metricSelect.addEventListener("change", () => {
   generateForecasts(searchBox.value, metricSelect.checked);
 });
